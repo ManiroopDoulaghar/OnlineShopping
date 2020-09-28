@@ -11,6 +11,7 @@ import java.util.List;
 
 
 
+
 @Entity
 @Table(name = "t_orders")
 @JsonIdentityInfo(
@@ -22,8 +23,17 @@ public class Order {
     private Long id;
     private Long productId;
     private Long customerId;
-    @Temporal(TemporalType.TIMESTAMP)
+    private String status;
+    @Temporal(TemporalType.DATE)
     private Date orderDate;
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
 
     public Long getId() {
         return id;
@@ -58,5 +68,16 @@ public class Order {
     }
 
     public Order() {
+    }
+
+    @Override
+    public String toString() {
+        return "Order{" +
+                "id=" + id +
+                ", productId=" + productId +
+                ", customerId=" + customerId +
+                ", status='" + status + '\'' +
+                ", orderDate=" + orderDate +
+                '}';
     }
 }
