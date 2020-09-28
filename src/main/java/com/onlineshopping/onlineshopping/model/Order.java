@@ -1,41 +1,62 @@
 package com.onlineshopping.onlineshopping.model;
 
+
+
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
+import javax.persistence.*;
+import java.util.Date;
+import java.util.List;
+
+
+
+@Entity
+@Table(name = "t_orders")
+@JsonIdentityInfo(
+        generator = ObjectIdGenerators.PropertyGenerator.class,
+        property = "id")
 public class Order {
-    private Long orderID;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    private Long productId;
+    private Long customerId;
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date orderDate;
 
-    public Long getOrderID() {
-        return orderID;
+    public Long getId() {
+        return id;
     }
 
-    public void setOrderID(Long orderID) {
-        this.orderID = orderID;
+    public void setId(Long id) {
+        this.id = id;
     }
 
-    public Long getCatergoryID() {
-        return catergoryID;
+    public Long getProductId() {
+        return productId;
     }
 
-    public void setCatergoryID(Long catergoryID) {
-        this.catergoryID = catergoryID;
+    public void setProductId(Long productId) {
+        this.productId = productId;
     }
 
-    public Long getProductID() {
-        return productID;
+    public Long getCustomerId() {
+        return customerId;
     }
 
-    public void setProductID(Long productID) {
-        this.productID = productID;
+    public void setCustomerId(Long customerId) {
+        this.customerId = customerId;
     }
 
-    public String getOrderStatus() {
-        return orderStatus;
+    public Date getOrderDate() {
+        return orderDate;
     }
 
-    public void setOrderStatus(String orderStatus) {
-        this.orderStatus = orderStatus;
+    public void setOrderDate(Date orderDate) {
+        this.orderDate = orderDate;
     }
 
-    private Long catergoryID;
-    private Long productID;
-    private String orderStatus;
+    public Order() {
+    }
 }
